@@ -1,0 +1,247 @@
+
+html
+{
+    padding: 0em;
+    margin: 0em;
+}
+
+body
+{
+    background-color: white;
+    padding: 0em;
+    margin: 0em;
+    font-family: "Source Sans Pro","Trebuchet MS","Lucida Grande","Bitstream Vera Sans","Helvetica Neue",sans-serif;
+    color: rgb(34, 34, 34);
+}
+
+body,button
+{
+    font-size: 1em;
+}
+
+button
+{
+    margin: 0.2em;
+    padding: 0.2em;
+}
+
+input
+{
+    font-size: 0.7em;
+}
+
+h1
+{
+    padding: 0.2em;
+    margin: 0em 0em 0.4em 0em;
+    font-size: 150%;
+    text-align: center;
+    background-color: rgb(66, 152, 184);
+    color: white;
+}
+
+a
+{
+    color: rgb(66, 152, 184);
+    text-decoration: inherit;
+}
+
+p
+{
+    margin-bottom: 2%;
+    margin-top: 1%;
+}
+
+ul
+{
+    margin-top: 2%
+}
+
+li
+{
+    padding-left: 0.7%;
+    margin-bottom: 2%;
+}
+
+code
+{
+    background-color: rgb(40, 107, 134);
+    border-radius: 0.2em;
+    color: white;
+    display: block;
+    white-space: pre;
+    font-size: 70%;
+    overflow: auto;
+    padding: 0.7em;
+}
+
+code em
+{
+    color: #fb0;
+    font-style: normal;
+}
+
+code i
+{
+    color: #0d0;
+    font-style: normal;
+}
+
+code.small
+{
+    font-size: 65%;
+}
+
+code.cmdline
+{
+    color: #00ff00;
+}
+
+.prompt
+{
+    color: white;
+}
+
+div.slide
+{
+    border: 0em;
+    margin: 0em;
+    padding: 0em;
+}
+
+div.slide_body
+{
+    margin-left: auto;
+    margin-right: auto;
+    width: 80%;
+    padding-top: 4%;
+    padding-bottom: 0em;
+    padding-left: 0em;
+    padding-right: 0em;
+}
+
+div.cc
+{
+    top: 5%;
+    right: 5%;
+    position: absolute;
+    font-size: 25%;
+    text-align: right;
+}
+
+div.cc img
+{
+    float: right;
+    max-width: 88px;
+    max-height: 31px;
+    border-width: 0px;
+    width: 15%;
+    margin-left: 0.75em;
+    margin-top: 0.25em;
+}
+
+div.slide.title h1
+{
+    margin-top: 15%;
+    margin-bottom: 0em;
+    margin-left: 3%;
+    margin-right: 4%;
+    font-size: 150%;
+}
+
+div.slide.title h2
+{
+    margin-top: 0em;
+    font-size: 120%;
+    text-align: center;
+}
+
+
+div.slide.title address
+{
+    margin-top: 7%;
+    font-style: normal;
+    text-align: center;
+    font-size: 100%;
+}
+
+div.slide.title address a
+{
+    font-size: 60%;
+}
+
+div.slide.title address a.invisible
+{
+    font-size: 100%;
+    color: inherit;
+}
+
+div.slide.contents a
+{
+    color: inherit;
+    text-decoration: inherit;
+}
+
+div.image
+{
+    text-align: center;
+    margin: 0.2em;
+}
+
+img
+{
+    width: 70%;
+}
+
+input
+{
+    height: 2em;
+    margin: 0em 0em 0em 0.4em;
+    vertical-align: middle;
+}
+
+table.moreinfo
+{
+    border: 0em;
+    margin-top: 5%;
+    margin-left: auto;
+    margin-right: auto;
+    width: 90%;
+    padding: 1%;
+}
+
+table.moreinfo th
+{
+    font-weight: normal;
+    text-align: right;
+    width: 40%;
+    padding: 1%;
+    padding-right: 3%;
+    vertical-align: middle;
+    font-size: 80%;
+}
+
+table.moreinfo td
+{
+    font-weight: normal;
+    text-align: left;
+    vertical-align: middle;
+    width: 70%;
+    padding: 1%;
+    font-size: 80%;
+}
+
+table.moreinfo td a
+{
+    text-decoration: none;
+}
+
+address
+{
+    width: 40%;
+    margin: auto;
+    padding-top: 3%;
+    font-size: 70%;
+    text-align: left;
+    font-style: normal;
+}

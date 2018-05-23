@@ -1,0 +1,683 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link rel="stylesheet" type="text/css" href="structpres.css"/>
+    <script src="structpres.js"></script>
+    <title>Clever Things People Do In Groovy So You Have To Know About Them</title>
+</head>
+
+<body>
+
+<div class="slide title">
+
+<div class="cc">
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">
+<img alt="Creative Commons Licence" src="cc-by-sa-4.png" /></a>
+This work is licensed under a
+<a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">Creative Commons<br />Attribution-ShareAlike 4.0 International License</a>
+</div>
+
+<h1 class="seriestitle">Clever Things People Do In Groovy So You Have To Know About Them</h1>
+
+<address>Andy Balaam<br>
+<a href="http://www.artificialworlds.net/blog">artificialworlds.net/blog</a>
+</address>
+</div>
+
+
+<a name="contents"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Contents</h1>
+<ul>
+    <li>Motivation</li>
+    <li>Optional semicolons</li>
+    <li>Optional parentheses and dots</li>
+    <li>Operator overloading</li>
+    <li>Trailing closures</li>
+    <li>build.gradle and Jenkinsfile</li>
+    <li>Gotchas</li>
+</ul>
+</div>
+</div>
+
+
+<a name="slide_1"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Motivation</h1>
+<pre>
+</pre>
+</div>
+</div>
+
+
+<a name="slide_2"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>What is a programming language?</h1>
+<div class="image"><img src="programming-language-noexe.svg"/></div>
+</div>
+</div>
+
+
+<a name="slide_3"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>What is a programming language?</h1>
+<div class="image"><img src="programming-language-parts.svg"/></div>
+</div>
+</div>
+
+
+<a name="slide_4"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Our language</h1>
+<code>&gt; today
+<em>2017-06-28 (Tuesday)</em></code>
+</div>
+</div>
+
+
+<a name="slide_5"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Our language</h1>
+<code>&gt; today
+2017-06-28 (Tuesday)
+
+&gt; 2 weeks
+<em>14 days</em></code>
+</div>
+</div>
+
+
+<a name="slide_6"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Our language</h1>
+<code>&gt; today
+2017-06-28 (Tuesday)
+
+&gt; 2 weeks
+14 days
+
+&gt; tomorrow + 2 weeks
+<em>2017-07-13 (Wednesday)</em>
+</code>
+</div>
+</div>
+
+
+
+<a name="slide_7"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Code structure</h1>
+<p>Create a Python file datecalc.py:</p>
+<code># -- imports --
+
+# -- functions --
+
+# -- tests --
+
+# -- main --</code>
+</div>
+</div>
+
+
+<a name="slide_8"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Lex a single word</h1>
+<code># -- tests --
+assert <em>lex("today")</em> == [("WordToken", "today")]</code>
+<p>Make it pass!</p>
+<div class="image"><img src="lexer.svg"/></div>
+</div>
+</div>
+
+
+<a name="slide_9"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Lex a single word</h1>
+<p>My version:</p>
+<code># -- functions --
+def lex(chars):
+    <em>return [("WordToken", chars)]</em></code>
+</div>
+</div>
+
+
+<a name="slide_10"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Parse a single word</h1>
+<code># -- tests --
+def p(x):
+    return parse(lex(x))
+
+assert <em>p("today")</em> == ("WordTree", "today")</code>
+<p>Make it pass!</p>
+<div class="image"><img src="parser.svg"/></div>
+</div>
+</div>
+
+
+<a name="slide_11"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Parse a single word</h1>
+<p>My version:</p>
+<code># -- functions --
+def parse(tokens):
+    tok = tokens[0]
+    <em>return ("WordTree", tok[1])</em></code>
+</div>
+</div>
+
+
+<a name="slide_12"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Eval a single word</h1>
+<code># -- imports --
+from datetime import date, timedelta
+
+# -- tests --
+def e(x):
+    return evaluate(parse(lex(x)))
+
+today = date.today()
+
+assert <em>e("today")</em> == ("DateValue", today)</code>
+<div class="image"><img src="evaluator.svg" style="float:right;"/><p>Make it pass!</p></div>
+</div>
+</div>
+
+
+<a name="slide_13"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Parse a single word</h1>
+<p>My version (for now):</p>
+<code># -- functions --
+def evaluate(<i>tree</i>):
+    <em>return ("DateValue", date.today())</em></code>
+</div>
+</div>
+
+
+<a name="slide_14"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Another single word</h1>
+<code># -- tests --
+assert (
+    <em>lex("tomorrow")</em> ==
+    [("WordToken", "tomorrow")]
+)
+
+assert (
+    <em>p("tomorrow")</em> ==
+    ("WordTree", "tomorrow")
+)</code>
+<p>These may already pass!</p>
+</div>
+</div>
+
+
+<a name="slide_15"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Another single word</h1>
+<code># -- tests --
+def days(n):
+    return timedelta(days=n)
+
+assert (
+    <em>e("tomorrow")</em> ==
+    ("DateValue", today + days(1))
+)</code>
+<p>Make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_16"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Another single word</h1>
+<p>My version:</p>
+<code># -- functions --
+def evaluate(tree):
+    if tree[1] == "<i>today</i>":
+        return ("DateValue", date.today())
+    elif tree[1] == "<i>tomorrow</i>":
+        <em>return (
+            "DateValue",
+            date.today() + timedelta(days=1)
+        )</em></code>
+</div>
+</div>
+
+
+<a name="slide_17"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Two different tokens</h1>
+<code># -- tests --
+assert (
+    <em>lex("2 days")</em> ==
+    [
+        ("NumberToken", "2"),
+        ("WordToken", "days")
+    ]
+)</code>
+<p>Make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_18"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Two different tokens</h1>
+<p>My version:</p>
+<code># -- functions --
+def <em>make_token</em>(s):
+    <i>if s[0] in "0123456789":
+        return ("NumberToken", s)</i>
+    else:
+        return ("WordToken", s)
+
+def lex(chars):
+    return [
+        <em>make_token</em>(s)
+        for s in chars.split(" ")
+    ]</code>
+</div>
+</div>
+
+
+<a name="slide_19"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Parse time length</h1>
+<code># -- tests --
+assert (
+    <em>p("2 days")</em> ==
+    ("LengthTree", "2", "days")
+)</code>
+<p>Make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_20"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Parse time length</h1>
+<p>My version:</p>
+<code>def parse(tokens):
+    tok = tokens[0]
+    if tok[0] == <i>"NumberToken"</i>:
+        next_tok = tokens[1]
+        <em>return (
+            "LengthTree",
+            tok[1],
+            next_tok[1]
+        )</em>
+    else: # Must be WordToken
+        return ("WordTree", tok[1])</code>
+</div>
+</div>
+
+
+<a name="slide_21"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Eval time length</h1>
+<code># -- tests --
+assert <em>e("2 days")</em> == ("LengthValue", 2)</code>
+<p>Make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_22"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Eval time length</h1>
+<p>My version:</p>
+<code>def evaluate(tree):
+    if tree[0] == "<i>LengthTree</i>":
+        <em>return ("LengthValue", int(tree[1]))</em>
+    elif tree[0] == "WordTree":
+        if tree[1] == "today":
+            return ("DateValue", date.today())
+        elif tree[1] == "tomorrow":
+            return (
+                "DateValue",
+                date.today() + timedelta(days=1)
+            )</code>
+</div>
+</div>
+
+
+<a name="slide_23"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Weeks are 7 days</h1>
+<code># -- tests --
+assert (
+    <em>lex("3 weeks")</em> ==
+    [
+        ("NumberToken", "3"),
+        ("WordToken", "weeks")
+    ]
+)
+assert (
+    <em>p("3 weeks")</em> ==
+    ("LengthTree", "3", "weeks")
+)</code>
+<p>These may already pass!</p>
+</div>
+</div>
+
+
+<a name="slide_24"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Weeks are 7 days</h1>
+<code># -- tests --
+assert <em>e("3 weeks")</em> == ("LengthValue", 21)</code>
+<p>Make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_25"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Weeks are 7 days</h1>
+<code>def <i>length_tree_in_days</i>(length_tree):
+    number = int(length_tree[1])
+    unit = length_tree[2]
+    if unit == "weeks":
+        return number * 7
+    else:
+        return number
+
+def evaluate(tree):
+    if tree[0] == "LengthTree":
+        <em>return (
+            "LengthValue",
+            </em><i>length_tree_in_days</i><em>(tree)
+        )</em>
+    <i>...</i>
+</code>
+</div>
+</div>
+
+
+<a name="slide_26"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<code>assert (
+    <em>lex("today + 3 days")</em> ==
+    [
+        ("WordToken", "today"),
+        <i>("OperatorToken", "+")</i>,
+        ("NumberToken", "3"),
+        ("WordToken", "days")
+    ]
+)</code>
+<p>Make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_27"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<p>My version:</p>
+<code>def make_token(s):
+    if s[0] in "0123456789":
+        return ("NumberToken", s)
+    <i>elif s[0] in "+":</i>
+        <em>return ("OperatorToken", s[0])</em>
+    else:
+        return ("WordToken", s)</code>
+</div>
+</div>
+
+<a name="slide_28"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<code>assert (
+    <em>p("today + 3 days")</em> ==
+    ("<i>OperatorTree</i>",
+        "+",
+        ("WordTree", "today"),
+        ("LengthTree", "3", "days")
+    )
+)</code>
+<p>Challenge: make it pass!</p>
+</div>
+</div>
+
+
+<a name="slide_29"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<p>My version:</p>
+<code>def parse(tokens, <i>so_far</i>=None):
+    if len(tokens) == 0:
+        return so_far
+    <i>...</i></code>
+</div>
+</div>
+
+
+<a name="slide_30"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<p>My version:</p>
+<code>def <i>parse</i>(tokens, so_far=None):
+    <i>...</i>
+    tok = tokens[0]
+    other_toks = tokens[1:]
+    elif tok[0] == "OperatorToken":
+        return (
+            "<em>OperatorTree</em>",
+            tok[1],
+            so_far,
+            <i>parse</i>(other_toks)
+        )
+    <i>...</i></code>
+</div>
+</div>
+
+
+<a name="slide_31"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<p>My version:</p>
+<code>def <i>parse</i>(tokens, so_far=None):
+    <i>...</i>
+    else:
+        return <i>parse</i>(
+            other_toks,
+            <em>("WordTree", tok[1])</em>
+        )</code>
+</div>
+</div>
+
+
+<a name="slide_32"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<code class="small">def <i>parse</i>(tokens, so_far=None):
+    if len(tokens) == 0:
+        return so_far
+    tok = tokens[0]
+    other_toks = tokens[1:]
+    if tok[0] == "NumberToken":
+        next_tok = tokens[1]
+        return ("LengthTree", tok[1], next_tok[1])
+    elif tok[0] == "OperatorToken":
+        return ("OperatorTree",
+            tok[1], so_far, <i>parse</i>(other_toks))
+    else: # Must be WordToken
+        return <i>parse</i>(
+            other_toks, ("WordTree", tok[1]))</code>
+</div>
+</div>
+
+
+<a name="slide_33"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<code>assert (
+    <em>e("today + 3 days")</em> ==
+    ("DateValue", today + days(3))
+)
+assert (
+    <em>e("tomorrow + 1 day")</em> ==
+    ("DateValue", today + days(2))
+)</code>
+<p>Make them pass!</p>
+</div>
+</div>
+
+
+<a name="slide_34"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Plus expression</h1>
+<code>def <i>evaluate</i>(tree):
+    if tree[0] == "LengthTree":
+        <i>...</i>
+    elif tree[0] == "OperatorTree":
+        left = <i>evaluate</i>(tree[2])
+        right = <i>evaluate</i>(tree[3])
+        return <em>(
+            "DateValue",
+            left[1] + timedelta(days=right[1])
+        )</em>
+    elif tree[0] == "WordTree":
+        <i>...</i></code>
+</div>
+</div>
+
+
+<a name="slide_35"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Extension: main</h1>
+<code>$ python datecalc.py
+2 weeks
+<em>14 days</em>
+today + 3 days
+<em>2017-08-01 (Saturday)</em></code>
+<p>Make it so.</p>
+</div>
+</div>
+
+
+<a name="slide_36"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Extension: main</h1>
+<code class="small"># -- imports --
+import sys
+
+# -- functions --
+def <i>pretty</i>(value):
+    if value[0] == "DateValue":
+        return value[1].strftime("%Y-%m-%d (%A)")
+    else:
+        return "%s days" % value[1]
+
+# -- main --
+while True:
+    ln = sys.stdin.readline()
+    if ln is None or ln.strip() == "":
+        break
+    sys.stdout.write(
+        "%s\n" %
+        <i>pretty</i>(evaluate(parse(lex(ln.strip()))))
+    )</code>
+</div>
+</div>
+
+
+<a name="slide_37"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Homework: error-handling</h1>
+<code>&gt; 2 elephants
+<em>Unknown time unit 'elephants'.</em>
+
+&gt; penguin
+<em>Unknown word 'penguin'.</em></code>
+</div>
+</div>
+
+
+<a name="slide_38"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Homework: minus</h1>
+<code>&gt; today - 3 days
+<em>2017-08-25 (Sunday)</em></code>
+</div>
+</div>
+
+
+<a name="slide_39"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Homework: date input</h1>
+<code>&gt; 5th July 2015 - 3 days
+<em>2017-07-02 (Thursday)</em></code>
+</div>
+</div>
+
+
+<a name="slide_40"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Nice work.</h1>
+<table class="moreinfo">
+    <tr>
+        <th>OpenMarket is hiring!</th>
+        <td><a href="https://www.openmarket.com/company/careers/">openmarket.com/company/careers</a></td>
+    </tr>
+    <tr>
+        <th>Code:</th>
+        <td><a href="https://github.com/andybalaam/datecalc">github.com/andybalaam/datecalc</a></td>
+    </tr>
+    <tr>
+        <th>Slides:</th>
+        <td><a href="https://github.com/andybalaam/videos-write-your-own-language">github.com/andybalaam/videos-write-your-own-language</a></td>
+    </tr>
+</table>
+<address>More:<br/><a href="http://twitter.com/andybalaam">@andybalaam</a><br/>
+<a href="https://mastodon.social/@andybalaam">@andybalaam@mastodon.social</a><br/>
+<a href="https://www.youtube.com/user/ajbalaam">youtube.com/user/ajbalaam</a><br/>
+<a href="http://www.artificialworlds.net/blog">artificialworlds.net/blog</a></address>
+</div>
+</div>
