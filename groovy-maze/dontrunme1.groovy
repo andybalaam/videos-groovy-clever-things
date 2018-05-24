@@ -4,6 +4,4 @@ dontRunMe = {->
 }
 
 println(dontRunMe)
-
-//"dontRunMe=$dontRunMe"
-//"dontRunMe=$dontRunMe".toUpperCase()
+"dontRunMe=$dontRunMe".toUpperCase()

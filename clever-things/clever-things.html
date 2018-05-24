@@ -37,7 +37,7 @@ This work is licensed under a
     <li>Operator overloading</li>
     <li>Trailing closures</li>
     <li>build.gradle and Jenkinsfile</li>
-    <li>Gotchas</li>
+    <li>Gotchas / fun</li>
 </ul>
 </div>
 </div>
@@ -310,6 +310,103 @@ tmp$_run_closure1@1ffe63b9
 <a name="slide_20"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>x = [a:3, b:4]
+println(x)
+</code>
+</div>
+</div>
+
+
+<a name="slide_21"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>x = [a:3, b:4]
+println(x)
+</code>
+<code class="output">[a:3, b:4]
+</code>
+</div>
+</div>
+
+
+<a name="slide_22"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>x = a:3, b:4
+println(x)
+</code>
+</div>
+</div>
+
+
+<a name="slide_23"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>x = a:3, b:4
+println(x)
+</code>
+<code class="output">org.codehaus.groovy.control.MultipleCompilationErrorsException: startup failed:
+/home-andrebal-writing/groovy/videos-groovy-clever-things/groovy-maze/tmp.groovy: 1: expecting EOF, found ':' @ line 1, column 6.
+   x = a:3, b:4
+        ^
+
+1 error
+</code>
+</div>
+</div>
+
+
+<a name="slide_24"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>println(a:3, b:4)
+</code>
+</div>
+</div>
+
+
+<a name="slide_25"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>println(a:3, b:4)
+</code>
+<code class="output">[a:3, b:4]
+</code>
+</div>
+</div>
+
+
+<a name="slide_26"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>println a:3, b:4
+</code>
+</div>
+</div>
+
+
+<a name="slide_27"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Optional square brackets</h1>
+<code>println a:3, b:4
+</code>
+<code class="output">[a:3, b:4]
+</code>
+</div>
+</div>
+
+
+<a name="slide_28"></a>
+<div class="slide">
+<div class="slide_body">
 <h1>Extension methods</h1>
 <code>4.times {println("Andy is cool")}
 </code>
@@ -317,7 +414,7 @@ tmp$_run_closure1@1ffe63b9
 </div>
 
 
-<a name="slide_21"></a>
+<a name="slide_29"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Extension methods</h1>
@@ -332,7 +429,7 @@ Andy is cool
 </div>
 
 
-<a name="slide_22"></a>
+<a name="slide_30"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Extension methods</h1>
@@ -348,7 +445,7 @@ letters.each {println(it)}
 </div>
 
 
-<a name="slide_23"></a>
+<a name="slide_31"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Extension methods</h1>
@@ -369,7 +466,7 @@ z=1
 </div>
 
 
-<a name="slide_24"></a>
+<a name="slide_32"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Extension methods</h1>
@@ -385,7 +482,7 @@ letters.eachInValueOrder {println(it)}
 </div>
 
 
-<a name="slide_25"></a>
+<a name="slide_33"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Extension methods</h1>
@@ -406,7 +503,7 @@ c=4
 </div>
 
 
-<a name="slide_26"></a>
+<a name="slide_34"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Operator overloading</h1>
@@ -424,7 +521,7 @@ println(x + y)
 </div>
 
 
-<a name="slide_27"></a>
+<a name="slide_35"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Operator overloading</h1>
@@ -443,7 +540,7 @@ println(x + y)
 </div>
 </div>
 
-<a name="slide_28"></a>
+<a name="slide_36"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Example</h1>
@@ -451,7 +548,7 @@ println(x + y)
 </div>
 
 
-<a name="slide_29"></a>
+<a name="slide_37"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Example</h1>
@@ -471,7 +568,7 @@ _%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_
 </div>
 
 
-<a name="slide_30"></a>
+<a name="slide_38"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Example</h1>
@@ -488,65 +585,21 @@ def _ = new MazeUnderScore()
 </div>
 
 
-<a name="slide_31"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_32"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_33"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_34"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_35"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_36"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_37"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
-<a name="slide_38"></a>
-<div class="slide">
-<div class="slide_body">
-</div>
-</div>
-
-
 <a name="slide_39"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Example</h1>
+<code>// ...
+logic = new Logic()
+// ...
+
+at start then ghosts.mode becomes normal
+when ghost hits player then player dies
+when player hits pill then ghosts.mode becomes scared and pill becomes deleted
+rules done
+
+logic.rules.each {println(it)}
+</code>
 </div>
 </div>
 
@@ -554,5 +607,310 @@ def _ = new MazeUnderScore()
 <a name="slide_40"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Example</h1>
+<code>// ...
+logic = new Logic()
+// ...
+
+at start then ghosts.mode becomes normal
+when ghost hits player then player dies
+when player hits pill then ghosts.mode becomes scared and pill becomes deleted
+rules done
+
+logic.rules.each {println(it)}
+</code>
+<code class="output">on(start, setValue(ghosts.mode, normal))
+on(ghost.hits(player), dies(player, null))
+on(player.hits(pill), setValue(ghosts.mode, scared))
+on(player.hits(pill), setValue(pill, deleted))
+</code>
+</div>
+</div>
+
+
+<a name="slide_41"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Example</h1>
+<code>class Logic {
+    def rules = []
+    // ...
+    def at(time) {
+        changeEvent(time)
+    }
+    // ...
+    def then(object) {
+        changeObject(object)
+    }
+}
+</code>
+</div>
+</div>
+
+
+<a name="slide_42"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Trailing closures</h1>
+<code>def doItTwice(fn) {
+    fn()
+    fn()
+}
+doItTwice({println("d")})
+</code>
+</div>
+</div>
+
+
+<a name="slide_43"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Trailing closures</h1>
+<code>def doItTwice(fn) {
+    fn()
+    fn()
+}
+doItTwice({println("d")})
+</code>
+<code class="output">d
+d
+</code>
+</div>
+</div>
+
+
+<a name="slide_44"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Trailing closures</h1>
+<code>def doItTwice(fn) {
+    fn()
+    fn()
+}
+doItTwice {
+    println("e")
+}
+</code>
+</div>
+</div>
+
+
+<a name="slide_45"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Trailing closures</h1>
+<code>def doItTwice(fn) {
+    fn()
+    fn()
+}
+doItTwice {
+    println("e")
+}
+</code>
+<code class="output">e
+e
+</code>
+</div>
+</div>
+
+
+<a name="slide_46"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>build.gradle</h1>
+<code>dependencies {
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.22'
+}
+</code>
+</div>
+</div>
+
+
+<a name="slide_47"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>build.gradle</h1>
+<code>
+// Implicit static imports of dependencies and compile
+dependencies({
+    compile(["group": 'org.slf4j', "name": 'slf4j-api', "version": '1.7.22']);
+});
+</code>
+</div>
+</div>
+
+
+<a name="slide_48"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Jenkinsfile</h1>
+<code>
+pipeline {
+    stages {
+        stage('Build') {
+            steps {
+                echo "Building all the projects"
+                dir('sms/whist') {
+                    catchError {
+                        sh "make"
+</code>
+</div>
+</div>
+
+
+<a name="slide_49"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Jenkinsfile</h1>
+<code>
+// Implicit static imports ...
+pipeline({
+    stages({
+        stage('Build', {
+            steps( {
+                echo("Building all the projects")
+                dir('sms/whist', {
+                    catchError( {
+                        sh("make")
+</code>
+</div>
+</div>
+
+
+<a name="slide_50"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>
+dontRunMe = {-&gt;
+    println("dontRunMe!")
+    "you ran me, didn't you?"
+}
+println(dontRunMe)
+"dontRunMe=$dontRunMe"
+</code>
+</div>
+</div>
+
+
+<a name="slide_51"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>
+dontRunMe = {-&gt;
+    println("dontRunMe!")
+    "you ran me, didn't you?"
+}
+println(dontRunMe)
+"dontRunMe=$dontRunMe"
+</code>
+<code class="output">dontrunme1$_run_closure1@4690b489
+</code>
+</div>
+</div>
+
+
+<a name="slide_52"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>
+dontRunMe = {-&gt;
+    println("dontRunMe!")
+    "you ran me, didn't you?"
+}
+println(dontRunMe)
+"dontRunMe=$dontRunMe".toUpperCase()
+</code>
+</div>
+</div>
+
+
+<a name="slide_53"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>
+dontRunMe = {-&gt;
+    println("dontRunMe!")
+    "you ran me, didn't you?"
+}
+println(dontRunMe)
+"dontRunMe=$dontRunMe".toUpperCase()
+</code>
+<code class="output">dontrunme1$_run_closure1@4690b489
+dontRunMe!
+</code>
+</div>
+</div>
+
+
+<a name="slide_54"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>yoable = [yo:null]
+def coolPrint(message) {
+    println(message)
+    yoable
+}
+coolPrint("s'up?")
+</code>
+</div>
+</div>
+
+
+<a name="slide_55"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>yoable = [yo:null]
+def coolPrint(message) {
+    println(message)
+    yoable
+}
+coolPrint("s'up?")
+</code>
+<code class="output">s'up?</code>
+</div>
+</div>
+
+
+<a name="slide_56"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>yoable = [yo:null]
+def coolPrint(message) {
+    println(message)
+    yoable
+}
+coolPrint("s'up?") yo
+</code>
+</div>
+</div>
+
+
+<a name="slide_57"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Gotcha: String interpolation</h1>
+<code>yoable = [yo:null]
+def coolPrint(message) {
+    println(message)
+    yoable
+}
+coolPrint("s'up?") yo
+</code>
+<code class="output">s'up?</code>
+</div>
+</div>
+
+
+<a name="slide_57"></a>
+<div class="slide">
+<div class="slide_body">
+<h1>Questions?</h1>
 </div>
 </div>

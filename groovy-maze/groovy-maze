@@ -23,63 +23,8 @@ a() b
 // System.exit(0)
 
 
-// ## Passing closures
-// TODO: example of word { otherWord {} }
-
-// x = {x -> println(x)}
-// x("a")
-// x("b")
-// 
-// y = {println(it)}
-// y("c")
-// 
-// 
-// def doItTwice(fn) {
-//     fn()
-//     fn()
-// }
-// 
-// doItTwice({println("d")})
-// 
-// doItTwice {println("e")}
-
 
 // ## String interpolation - see dontrunme?.groovy
 
 
 
-// // ## Operator overloading
-// 
-// // TODO: make level actually work
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
-// def b = 1
-// def d = 1
-// def f = 1
-// def h = 1
-// 
-// def a(x) {
-//     [
-//         c: {
-//             it1 -> [
-//                 e: {
-//                     it2 -> [g : {it3 -> []}]
-//                 }
-//             ]
-//         }
-//     ]
-// }
-// 
-// 
-// a b  c d  e f  g h
-// a(b).c(d).e(f).g(h);
-// 
