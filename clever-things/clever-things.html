@@ -32,8 +32,8 @@ This work is licensed under a
 <h1>Contents</h1>
 <ul>
     <li>Motivation</li>
-    <li>Optional semicolons</li>
-    <li>Optional parentheses and dots</li>
+    <li>Optional things</li>
+    <li>Extension methods</li>
     <li>Operator overloading</li>
     <li>Trailing closures</li>
     <li>build.gradle and Jenkinsfile</li>
@@ -204,6 +204,14 @@ printArgs(1, 2)
 <a name="slide_12"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs 3, 4
+</code>
 </div>
 </div>
 
@@ -211,6 +219,18 @@ printArgs(1, 2)
 <a name="slide_13"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs 3, 4
+</code>
+<code class="output">
+3
+4
+</code>
 </div>
 </div>
 
@@ -218,6 +238,14 @@ printArgs(1, 2)
 <a name="slide_14"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs(5) 6
+</code>
 </div>
 </div>
 
@@ -225,6 +253,17 @@ printArgs(1, 2)
 <a name="slide_15"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs(5) 6
+</code>
+<code class="output">
+Caught: groovy.lang.MissingMethodException: No signature of method: tmp.printArgs() is applicable for argument types: (java.lang.Integer) values: [5]
+</code>
 </div>
 </div>
 
@@ -232,6 +271,14 @@ printArgs(1, 2)
 <a name="slide_16"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs(5) {}
+</code>
 </div>
 </div>
 
@@ -239,6 +286,18 @@ printArgs(1, 2)
 <a name="slide_17"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs(5) {}
+</code>
+<code class="output">
+5
+tmp$_run_closure1@1ffe63b9
+</code>
 </div>
 </div>
 
@@ -246,6 +305,14 @@ printArgs(1, 2)
 <a name="slide_18"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs(5) {println("6")}
+</code>
 </div>
 </div>
 
@@ -253,6 +320,18 @@ printArgs(1, 2)
 <a name="slide_19"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Optional parentheses and dots</h1>
+<code>
+def printArgs(a, b) {
+    println(a)
+    println(b)
+}
+printArgs(5) {println("6")}
+</code>
+<code class="output">
+5
+tmp$_run_closure1@1ffe63b9
+</code>
 </div>
 </div>
 
@@ -260,6 +339,10 @@ printArgs(1, 2)
 <a name="slide_20"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Extension methods</h1>
+<code>
+4.times {println("Andy is cool")}
+</code>
 </div>
 </div>
 
@@ -267,6 +350,16 @@ printArgs(1, 2)
 <a name="slide_21"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Extension methods</h1>
+<code>
+4.times {println("Andy is cool")}
+</code>
+<code class="output">
+Andy is cool
+Andy is cool
+Andy is cool
+Andy is cool
+</code>
 </div>
 </div>
 
@@ -274,6 +367,16 @@ printArgs(1, 2)
 <a name="slide_22"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Extension methods</h1>
+<code>
+def letters = new TreeMap([
+    "a": 2,
+    "b": 3,
+    "c": 4,
+    "z": 1,
+])
+letters.each {println(it)}
+</code>
 </div>
 </div>
 
@@ -281,6 +384,22 @@ printArgs(1, 2)
 <a name="slide_23"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Extension methods</h1>
+<code>
+def letters = new TreeMap([
+    "a": 2,
+    "b": 3,
+    "c": 4,
+    "z": 1,
+])
+letters.each {println(it)}
+</code>
+<code class="output">
+a=2
+b=3
+c=4
+z=1
+</code>
 </div>
 </div>
 
@@ -288,6 +407,16 @@ printArgs(1, 2)
 <a name="slide_24"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Extension methods</h1>
+<code>
+def letters = new TreeMap(["a":2, "b":3, "c":4, "z":1])
+Map.metaClass.eachInValueOrder = {
+    entries = new ArrayList(entrySet())
+    entries.sort({e1, e2 -&gt; e1.getValue() - e2.getValue()})
+    entries.each(it)
+}
+letters.eachInValueOrder {println(it)}
+</code>
 </div>
 </div>
 
@@ -295,6 +424,22 @@ printArgs(1, 2)
 <a name="slide_25"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Extension methods</h1>
+<code>
+def letters = new TreeMap(["a":2, "b":3, "c":4, "z":1])
+Map.metaClass.eachInValueOrder = {
+    entries = new ArrayList(entrySet())
+    entries.sort({e1, e2 -&gt; e1.getValue() - e2.getValue()})
+    entries.each(it)
+}
+letters.eachInValueOrder {println(it)}
+</code>
+<code class="output">
+z=1
+a=2
+b=3
+c=4
+</code>
 </div>
 </div>
 
@@ -302,6 +447,20 @@ printArgs(1, 2)
 <a name="slide_26"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Operator overloading</h1>
+<code>
+class PipeConcat {
+    String c
+    def plus(y) {
+        "$c|$y.c"
+    }
+}
+def x = new PipeConcat(c:"foo")
+def y = new PipeConcat(c:"bar")
+println(x + y)
+</code>
+<code class="output">
+</code>
 </div>
 </div>
 
@@ -309,12 +468,41 @@ printArgs(1, 2)
 <a name="slide_27"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Operator overloading</h1>
+<code>
+class PipeConcat {
+    String c
+    def plus(y) {
+        "$c|$y.c"
+    }
+}
+def x = new PipeConcat(c:"foo")
+def y = new PipeConcat(c:"bar")
+println(x + y)
+</code>
+<code class="output">
+foo|bar
+</code>
 </div>
 </div>
 
 <a name="slide_28"></a>
 <div class="slide">
 <div class="slide_body">
+<h1>Example</h1>
+<code>
+_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_
+_%_*_._._._._._._%_._._._._._._*_%_
+_%_._%_%_._%_._%_%_%_._%_._%_%_._%_
+_%_._._._._%_._._._._._%_._._._._._
+_%_%_%_%_._%_%_%_._%_%_%_._%_%_%_%_
+_._._._._._%_._|_._|_._%_._._._._._
+_%_%_%_%_._%_%_%_._%_%_%_._%_%_%_%_
+_%_._._._._%_._._._._._%_._._._._._
+_%_._%_%_._%_._%_%_%_._%_._%_%_._%_
+_%_*_+_._._._._._%_._._._._._._*_%_
+_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_%_
+</code>
 </div>
 </div>
 
