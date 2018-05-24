@@ -92,9 +92,10 @@ code.small
     font-size: 65%;
 }
 
-code.cmdline
+code.output
 {
-    color: #00ff00;
+    margin-top: 1em;
+    background-color: rgb(20, 53, 67);
 }
 
 .prompt

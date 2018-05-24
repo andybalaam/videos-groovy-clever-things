@@ -730,8 +730,7 @@ e
 <div class="slide">
 <div class="slide_body">
 <h1>build.gradle</h1>
-<code>
-// Implicit static imports of dependencies and compile
+<code>// Implicit static imports of dependencies and compile
 dependencies({
     compile(["group": 'org.slf4j', "name": 'slf4j-api', "version": '1.7.22']);
 });
@@ -744,8 +743,7 @@ dependencies({
 <div class="slide">
 <div class="slide_body">
 <h1>Jenkinsfile</h1>
-<code>
-pipeline {
+<code>pipeline {
     stages {
         stage('Build') {
             steps {
@@ -762,8 +760,7 @@ pipeline {
 <div class="slide">
 <div class="slide_body">
 <h1>Jenkinsfile</h1>
-<code>
-// Implicit static imports ...
+<code>// Implicit static imports ...
 pipeline({
     stages({
         stage('Build', {
@@ -781,8 +778,7 @@ pipeline({
 <div class="slide">
 <div class="slide_body">
 <h1>Gotcha: String interpolation</h1>
-<code>
-dontRunMe = {-&gt;
+<code>dontRunMe = {-&gt;
     println("dontRunMe!")
     "you ran me, didn't you?"
 }
@@ -797,8 +793,7 @@ println(dontRunMe)
 <div class="slide">
 <div class="slide_body">
 <h1>Gotcha: String interpolation</h1>
-<code>
-dontRunMe = {-&gt;
+<code>dontRunMe = {-&gt;
     println("dontRunMe!")
     "you ran me, didn't you?"
 }
@@ -815,8 +810,7 @@ println(dontRunMe)
 <div class="slide">
 <div class="slide_body">
 <h1>Gotcha: String interpolation</h1>
-<code>
-dontRunMe = {-&gt;
+<code>dontRunMe = {-&gt;
     println("dontRunMe!")
     "you ran me, didn't you?"
 }
@@ -831,8 +825,7 @@ println(dontRunMe)
 <div class="slide">
 <div class="slide_body">
 <h1>Gotcha: String interpolation</h1>
-<code>
-dontRunMe = {-&gt;
+<code>dontRunMe = {-&gt;
     println("dontRunMe!")
     "you ran me, didn't you?"
 }
@@ -849,7 +842,7 @@ dontRunMe!
 <a name="slide_54"></a>
 <div class="slide">
 <div class="slide_body">
-<h1>Gotcha: String interpolation</h1>
+<h1>Fun</h1>
 <code>yoable = [yo:null]
 def coolPrint(message) {
     println(message)
@@ -864,7 +857,7 @@ coolPrint("s'up?")
 <a name="slide_55"></a>
 <div class="slide">
 <div class="slide_body">
-<h1>Gotcha: String interpolation</h1>
+<h1>Fun</h1>
 <code>yoable = [yo:null]
 def coolPrint(message) {
     println(message)
@@ -880,7 +873,7 @@ coolPrint("s'up?")
 <a name="slide_56"></a>
 <div class="slide">
 <div class="slide_body">
-<h1>Gotcha: String interpolation</h1>
+<h1>Fun</h1>
 <code>yoable = [yo:null]
 def coolPrint(message) {
     println(message)
@@ -895,7 +888,7 @@ coolPrint("s'up?") yo
 <a name="slide_57"></a>
 <div class="slide">
 <div class="slide_body">
-<h1>Gotcha: String interpolation</h1>
+<h1>Fun</h1>
 <code>yoable = [yo:null]
 def coolPrint(message) {
     println(message)
@@ -908,7 +901,7 @@ coolPrint("s'up?") yo
 </div>
 
 
-<a name="slide_57"></a>
+<a name="slide_58"></a>
 <div class="slide">
 <div class="slide_body">
 <h1>Questions?</h1>
